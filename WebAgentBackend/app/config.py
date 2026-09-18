@@ -71,7 +71,7 @@ class Settings(BaseSettings):
         env_file=".env", env_file_encoding="utf-8", extra="ignore"
     )
 
-    @field_validator("google_service_account_file", mode="after")
+    @field_validator("google_service_base64", mode="after")
     @classmethod
     def validate_json_structure(cls, raw_json: str) -> str:
         try:
@@ -89,5 +89,6 @@ class Settings(BaseSettings):
     def google_service_account_file_path(self) -> Dict[str, Any]:
         decoded_bytes = base64.b64decode(self.google_credentials_base64)
         return json.loads(decoded_bytes.decode("utf-8"))
+
 
 settings = Settings()
