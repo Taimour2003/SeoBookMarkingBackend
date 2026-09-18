@@ -1,6 +1,6 @@
-from auth import verify_webagent
+from app.auth import verify_webagent
+from app.services.google_sheets import fetch_bookmarking_urls
 from fastapi import Depends, FastAPI
-from services.google_sheets import fetch_bookmarking_urls
 
 app = FastAPI(title="WebAgent Backend", version="1.0.0")
 
